@@ -1,0 +1,50 @@
+import 'package:flutter/material.dart';
+import 'package:dane_reacher/routes/app_routes.dart';
+import 'package:dane_reacher/routes/app_routes_key.dart';
+import 'package:dane_reacher/utils/app_size.dart';
+import 'package:dane_reacher/utils/gap.dart';
+import 'package:dane_reacher/widgets/app_image/app_image.dart';
+import 'package:dane_reacher/widgets/buttons/app_button.dart';
+import 'package:dane_reacher/widgets/texts/app_text.dart';
+
+class ErrorScreen extends StatelessWidget {
+  const ErrorScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          spacing: AppSize.width(value: 5),
+          children: [
+            AppImage(path: "assets/images/error.webp"),
+            AppText(text: "Something went wrong", fontSize: AppSize.width(value: 25)),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: AppSize.size.width * 0.2),
+              child: AppText(text: "We encountered an error while trying to connect with our server.", textAlign: TextAlign.center, height: 1.5),
+            ),
+            Gap(height: 5),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: AppSize.size.width * 0.2),
+              child: AppText(text: "Please try after some time.😓", textAlign: TextAlign.center, height: 1.5),
+            ),
+          ],
+        ),
+      ),
+      bottomNavigationBar: SafeArea(
+        child: Padding(
+          padding: EdgeInsets.only(bottom: AppSize.width(value: 40)),
+          child: AppButton(
+            onTap: () {
+              AppRoutes.instance.go(AppRoutesKey.instance.initial);
+            },
+            height: AppSize.width(value: 50),
+            margin: EdgeInsets.symmetric(horizontal: AppSize.width(value: 20)),
+            title: "Return to Home",
+          ),
+        ),
+      ),
+    );
+  }
+}
